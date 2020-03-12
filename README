@@ -1,10 +1,13 @@
 NSX-T Concourse
 
+install docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
 Install concourse:
 https://github.com/concourse/concourse-docker
+cd concourse-docker
 ./keys/generate
-
 docker-compose up -d
 
 https://localhost:8080 -> cocourse UI
@@ -12,6 +15,8 @@ http://localhost:8080/api/v1/cli?arch=amd64&platform=linux
 http://localhost:8080/api/v1/cli?arch=amd64&platform=darwin
 
 curl -v 'http://localhost:8080/api/v1/cli?arch=amd64&platform=darwin' -o fly
+curl -v 'http://localhost:8080/api/v1/cli?arch=amd64&platform=linux' -o fly
+chmod +x fly
 mv fly /usr/local/bin/fly
 
 
@@ -27,8 +32,8 @@ mkdir -p /home/concourse
 docker run --name nsx-t-install -d \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v /home/concourse:/home/concourse \
-  -e CONCOURSE_URL='http://<host_ip>:8080' \
-  -e EXTERNAL_DNS='<dns_server>' \
+  -e CONCOURSE_URL='http://localhost:8080' \
+  -e EXTERNAL_DNS='8.8.8.8' \
   -e IMAGE_WEBSERVER_PORT=40001 \
   -e VMWARE_USER='<myvmware_user_email>' \
   -e VMWARE_PASSWORD='<myvmware_password>' \
