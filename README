@@ -1,0 +1,37 @@
+NSX-T Concourse
+
+
+Install concourse:
+https://github.com/concourse/concourse-docker
+./keys/generate
+
+docker-compose up -d
+
+https://localhost:8080 -> cocourse UI
+http://localhost:8080/api/v1/cli?arch=amd64&platform=linux
+http://localhost:8080/api/v1/cli?arch=amd64&platform=darwin
+
+curl -v 'http://localhost:8080/api/v1/cli?arch=amd64&platform=darwin' -o fly
+mv fly /usr/local/bin/fly
+
+
+
+
+Location: https://github.com/vmware/nsx-t-datacenter-ci-pipelines
+
+wget https://github.com/vmware/nsx-t-datacenter-ci-pipelines/raw/master/docker_image/nsx-t-install-250.tar -O nsx-t-install.tar
+docker load -i nsx-t-install.tar
+mkdir -p /home/concourse
+
+
+docker run --name nsx-t-install -d \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /home/concourse:/home/concourse \
+  -e CONCOURSE_URL='http://<host_ip>:8080' \
+  -e EXTERNAL_DNS='<dns_server>' \
+  -e IMAGE_WEBSERVER_PORT=40001 \
+  -e VMWARE_USER='<myvmware_user_email>' \
+  -e VMWARE_PASSWORD='<myvmware_password>' \
+  nsx-t-install
+
+  docker run --name nsx-t-install -d   -v /var/run/docker.sock:/var/run/docker.sock   -v /home/concourse:/home/concourse   -e CONCOURSE_URL="http://10.173.13.139:8080"   -e EXTERNAL_DNS="192.168.100.1"   -e IMAGE_WEBSERVER_PORT=40001   -e VMWARE_USER='vmware'   -e VMWARE_PASSWORD='VMware1!'   nsx-t-install
