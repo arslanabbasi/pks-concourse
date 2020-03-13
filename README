@@ -28,15 +28,43 @@ wget https://github.com/vmware/nsx-t-datacenter-ci-pipelines/raw/master/docker_i
 docker load -i nsx-t-install.tar
 mkdir -p /home/concourse
 
+https://github.com/vmware/nsx-t-datacenter-ci-pipelines/blob/master/docker_image/Dockerfile
+wget -P /usr/local/bin/ https://github.com/concourse/concourse/releases/download/v5.7.0/fly-5.7.0-linux-amd64.tgz && \
+    tar -C /usr/local/bin/ -xvf /usr/local/bin/fly-5.7.0-linux-amd64.tgz && \
+    chmod +x /usr/local/bin/fly
+
+
+mv nsx-unified appliance & ovf tool to /home/concourse
 
 docker run --name nsx-t-install -d \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v /home/concourse:/home/concourse \
-  -e CONCOURSE_URL='http://localhost:8080' \
-  -e EXTERNAL_DNS='8.8.8.8' \
+  -e CONCOURSE_URL='http://10.173.13.139:8080' \
+  -e EXTERNAL_DNS='10.173.13.140' \
   -e IMAGE_WEBSERVER_PORT=40001 \
   -e VMWARE_USER='<myvmware_user_email>' \
   -e VMWARE_PASSWORD='<myvmware_password>' \
   nsx-t-install
 
-  docker run --name nsx-t-install -d   -v /var/run/docker.sock:/var/run/docker.sock   -v /home/concourse:/home/concourse   -e CONCOURSE_URL="http://10.173.13.139:8080"   -e EXTERNAL_DNS="192.168.100.1"   -e IMAGE_WEBSERVER_PORT=40001   -e VMWARE_USER='vmware'   -e VMWARE_PASSWORD='VMware1!'   nsx-t-install
+#put nsx-t ova and ovf ova in /home/concourse
+  docker run --name nsx-t-install -d \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /home/concourse:/home/concourse \
+    -e CONCOURSE_URL="http://10.173.13.139:8080" \
+    -e EXTERNAL_DNS="10.173.13.140" \
+    -e IMAGE_WEBSERVER_PORT=40001 \
+    -e VMWARE_USER='vmware' \
+    -e VMWARE_PASSWORD='VMware1!' \
+    nsx-t-install:con5
+
+
+CONCOURSE_URL=http://10.173.13.139:8080
+CONCOURSE_TARGET=nsx-concourse
+PIPELINE_NAME=nsx-t-install
+
+
+git clone -b nsxt-2.5.0 git@github.com:vmware/nsx-t-datacenter-ci-pipelines.git
+fly -t $CONCOURSE_TARGET sync
+fly --target $CONCOURSE_TARGET login -u nsx -p vmware --concourse-url $CONCOURSE_URL -n main
+fly_reset_cmd="fly -t $CONCOURSE_TARGET set-pipeline -p $PIPELINE_NAME -c nsx-t-datacenter-ci-pipelines/pipelines/nsx-t-install.yml -l /home/concourse/pipeline_config_internal.yml -l /home/concourse/nsx_pipeline_config.yml"
+

@@ -26,7 +26,7 @@ services:
       CONCOURSE_POSTGRES_USER: concourse_user
       CONCOURSE_POSTGRES_PASSWORD: concourse_pass
       CONCOURSE_POSTGRES_DATABASE: concourse
-      CONCOURSE_ADD_LOCAL_USER: admin:VMware1!
+      CONCOURSE_ADD_LOCAL_USER: nsx:vmware
       CONCOURSE_MAIN_TEAM_LOCAL_USER: admin
     logging:
       driver: "json-file"

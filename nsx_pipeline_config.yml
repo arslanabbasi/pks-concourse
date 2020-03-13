@@ -21,14 +21,14 @@ ntp_servers: 10.113.60.176
 default_gateway: 192.168.100.1
 netmask: 255.255.255.0
 
-nsx_manager_ip: 192.168.100.10
-nsx_manager_username: admin
-nsx_manager_password: VMware1!VMware1!
-nsx_manager_assigned_hostname: "nsxmgr" # this hostname+dns_domain will be FQDN
-nsx_manager_root_pwd: VMware1!    # Min 8 chars, upper, lower, number, special digit
-nsx_manager_deployment_size: small   # Recommended for real barebones demo, smallest setup
-nsx_manager_ssh_enabled: true
-resource_reservation_off: true
+# nsx_manager_ip: 192.168.100.10
+# nsx_manager_username: admin
+# nsx_manager_password: VMware1!VMware1!
+# nsx_manager_assigned_hostname: "nsxmgr" # this hostname+dns_domain will be FQDN
+# nsx_manager_root_pwd: VMware1!    # Min 8 chars, upper, lower, number, special digit
+# nsx_manager_deployment_size: small   # Recommended for real barebones demo, smallest setup
+# nsx_manager_ssh_enabled: true
+# resource_reservation_off: true
 
 # Compute manager credentials should be the same as above vCenter's if
 # controllers and edges are to be on the same vCenter
