@@ -19,7 +19,7 @@ netmask: 255.255.255.0
 nsx_manager_ips: 192.168.100.11,192.168.100.12,192.168.100.13 # Manager IPs.
 nsx_manager_username: admin
 nsx_manager_password: VMware1!VMware1!
-nsx_manager_hostname_prefix: "nsxt-mgr"   # Min 12 chars, upper, lower, number, special digit
+nsx_manager_hostname_prefix: "nsx-t-manager"   # Min 12 chars, upper, lower, number, special digit
 nsx_manager_virtual_ip: 192.168.100.10    # [OPTIONAL] Virtual IP as the access IP for the manager cluster
 # FQDN is required if virtual IP is configured
 nsx_manager_cluster_fqdn: nsx.lab.local   # [OPTIONAL] FQDN for the manager, will be used to generate cert for VIP
