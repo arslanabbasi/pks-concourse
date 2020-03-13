@@ -23,7 +23,7 @@ nsx_manager_hostname_prefix: "nsxt-mgr"   # Min 12 chars, upper, lower, number, 
 nsx_manager_virtual_ip: 192.168.100.10    # [OPTIONAL] Virtual IP as the access IP for the manager cluster
 # FQDN is required if virtual IP is configured
 nsx_manager_cluster_fqdn: nsx.lab.local   # [OPTIONAL] FQDN for the manager, will be used to generate cert for VIP
-nsx_license_key: 3M2U7-8A2DJ-78970-0H20M-94K6Q
+nsx_license_key: ((nsx-key))
 nsx_manager_root_pwd: VMware1!VMware1!       # [OPTIONAL] Defaults to nsx_manager_password if not set
 nsx_manager_cli_pwd: VMware1!VMware1!        # [OPTIONAL] Defaults to nsx_manager_password if not set
 nsx_manager_deployment_size: small        # Recommended for real bare-bones demo, smallest setup
