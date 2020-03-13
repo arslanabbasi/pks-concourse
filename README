@@ -68,3 +68,8 @@ fly -t $CONCOURSE_TARGET sync
 fly --target $CONCOURSE_TARGET login -u nsx -p vmware --concourse-url $CONCOURSE_URL -n main
 fly_reset_cmd="fly -t $CONCOURSE_TARGET set-pipeline -p $PIPELINE_NAME -c nsx-t-datacenter-ci-pipelines/pipelines/nsx-t-install.yml -l /home/concourse/pipeline_config_internal.yml -l /home/concourse/nsx_pipeline_config.yml"
 
+ fly -t $CONCOURSE_TARGET unpause-pipeline -p $PIPELINE_NAME
+
+
+ # Reset pipeline
+ docker exec -it $(docker inspect nsx-t-install | jq -r .[0].Id) bash -c "fly -t nsx-concourse set-pipeline -p nsx-t-install -c /home/workspace/nsx-t-datacenter-ci-pipelines/pipelines/nsx-t-install.yml -l /home/concourse/pipeline_config_internal.yml -l /home/concourse/nsx_pipeline_config.yml"
