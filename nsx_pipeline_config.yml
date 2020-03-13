@@ -2,7 +2,7 @@
 ### if they are N/A or not desired.
 
 ### General settings
-enable_ansible_debug: false # set value to true for verbose output from Ansible
+enable_ansible_debug: true # set value to true for verbose output from Ansible
 # format: "http://<jumphost_ip>:40001"
 nsx_image_webserver: "http://10.173.13.139:40001"
 
