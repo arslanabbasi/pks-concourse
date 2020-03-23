@@ -16,7 +16,7 @@ netmask: 255.255.255.0
 
 ### NSX manager cluster configs
 # Three node cluster is recommended. 1 is minimum, 3 is max
-nsx_manager_ips: 192.168.100.11,192.168.100.12,192.168.100.13 # Manager IPs.
+nsx_manager_ips: 192.168.100.31,192.168.100.32,192.168.100.33 # Manager IPs.
 nsx_manager_username: admin
 nsx_manager_password: VMware1!VMware1!
 nsx_manager_hostname_prefix: "nsx-t-manager"   # Min 12 chars, upper, lower, number, special digit
@@ -69,8 +69,8 @@ edge_default_gateway: 192.168.100.1
 edge_ip_prefix_length: 24
 edge_hostname_prefix: nsx-t-edge
 edge_transport_node_prefix: edge-transp-node
-edge_cli_password: "VMware1!"
-edge_root_password: "VMware1!"
+edge_cli_password: "VMware1!VMware1!"
+edge_root_password: "VMware1!VMware1!"
 edge_deployment_size: "large"     # Large recommended for PKS deployments
 vc_datacenter_for_edge: lab
 vc_cluster_for_edge: lab
