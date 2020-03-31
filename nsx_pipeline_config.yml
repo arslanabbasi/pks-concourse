@@ -53,10 +53,10 @@ edge_uplink_profile_vlan: 0 # For outbound uplink connection used by Edge, usual
 esxi_uplink_profile_vlan: 1526 # For internal overlay connection used by ESXi hosts, usually transport VLAN ID
 
 # Virtual Tunnel Endpoint network ip pool
-vtep_ip_pool_cidr: 40.40.40.0/24
-vtep_ip_pool_gateway: 40.40.40.1
-vtep_ip_pool_start: 40.40.40.10
-vtep_ip_pool_end: 40.40.40.200
+vtep_ip_pool_cidr: 99.99.99.0/24
+vtep_ip_pool_gateway: 99.99.99.1
+vtep_ip_pool_start: 99.99.99.10
+vtep_ip_pool_end: 99.99.99.200
 
 # Tier 0 router
 tier0_router_name: DefaultT0Router
@@ -121,9 +121,9 @@ nsx_t_external_ip_pool_spec: |
     start: 172.26.0.100 # Should not include gateway
     end: 172.26.255.254  # Should not include gateway
   - name: tep-ip-pool2
-    cidr: 40.40.41.0/24
-    start: 40.40.41.10
-    end: 40.40.41.200
+    cidr: 99.99.91.0/24
+    start: 99.99.91.10
+    end: 99.99.91.200
 nsx_t_nat_rules_spec: |
   nat_rules:
   # Sample entry for  PKS-Infra network
