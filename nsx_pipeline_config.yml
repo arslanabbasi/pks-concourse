@@ -36,7 +36,7 @@ vcenter_datacenter: lab
 vcenter_cluster: lab
 vcenter_datastore: sc2-hs2-b2731-ds1
 resource_reservation_off: true
-vc_management_network_for_deployment: Dlab-internal
+vc_management_network_for_deployment: "Dlab-internal"
 vc_cluster_for_deployment: lab
 vc_datastore_for_deployment: sc2-hs2-b2731-ds1
 
@@ -85,7 +85,7 @@ vc_management_network_for_edge: "Dlab-internal"
 ### ESX hosts
 # Install NSX on vSphere clusters automatically
 clusters_to_install_nsx: lab    # Comma separated
-per_cluster_vlans: 0,0  # Comma separated, order of VLANs applied same as order of clusters
+per_cluster_vlans: 1526  # Comma separated, order of VLANs applied same as order of clusters
 
 esx_ips: ""                      # [OPTIONAL] additional esx hosts, if any, to be individually installed
 esx_os_version: "6.7.0"          # [OPTIONAL]
